@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.rerurate.ae2_1_type_infinity_cell.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ae2_1_type_infinity_cell.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
