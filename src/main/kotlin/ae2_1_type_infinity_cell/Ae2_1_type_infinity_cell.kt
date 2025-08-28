@@ -1,15 +1,12 @@
 package ae2_1_type_infinity_cell
 
-import net.minecraft.client.Minecraft
+import ae2_1_type_infinity_cell.items.A1TICItems
 import net.minecraftforge.fml.common.Mod
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import net.minecraftforge.eventbus.api.IEventBus
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
 @Mod(Ae2_1_type_infinity_cell.ID)
 class Ae2_1_type_infinity_cell {
@@ -20,13 +17,8 @@ class Ae2_1_type_infinity_cell {
 
     init {
         LOGGER.log(Level.INFO, "Hello world!")
-    }
+        val modEventBus: IEventBus = FMLJavaModLoadingContext.get().modEventBus
 
-    private fun onClientSetup(event: FMLClientSetupEvent) {
-        LOGGER.log(Level.INFO, "Initializing client...")
-    }
-
-    private fun onServerSetup(event: FMLDedicatedServerSetupEvent) {
-        LOGGER.log(Level.INFO, "Server starting...")
+        A1TICItems().initialize(modEventBus)
     }
 }
