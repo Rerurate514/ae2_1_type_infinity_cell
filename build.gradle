@@ -1,205 +1,3 @@
-//buildscript {
-//    repositories {
-//        mavenCentral()
-//        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-//    }
-//    dependencies {
-//        classpath(group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "5.1.+", changing: true)
-//        classpath 'org.spongepowered:mixingradle:0.7.+'
-//    }
-//}
-//
-//plugins {
-//    id 'idea'
-//    id 'maven-publish'
-//    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-//    // Adds the Kotlin Gradle plugin
-//    id 'org.jetbrains.kotlin.jvm' version '1.8.22'
-//    // OPTIONAL Kotlin Serialization plugin
-//    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.22'
-//    id 'org.spongepowered.mixin' version '0.7.+'
-//}
-//
-//version = mod_version
-//group = mod_group_id
-//
-//base {
-//    archivesName = mod_id
-//}
-//
-//java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-//
-//println("Java: ${System.getProperty('java.version')}, JVM: ${System.getProperty('java.vm.version')} (${System.getProperty('java.vendor')}), Arch: ${System.getProperty('os.arch')}")
-//
-//minecraft {
-//    // Change to your preferred mappings
-//    mappings channel: mapping_channel, version: mapping_version
-//    copyIdeResources = true
-//
-//    runs {
-//        configureEach {
-//            workingDirectory project.file('run')
-//            property 'forge.logging.markers', 'REGISTRIES'
-//            property 'forge.logging.console.level', 'debug'
-//            mods {
-//                "$mod_id" {
-//                    source sourceSets.main
-//                }
-//            }
-//        }
-//
-//        client {
-//            property 'forge.enabledGameTestNamespaces', mod_id
-//            arg "-mixin.config=" + "ae2_1_type_infinity_cell.mixins.json"
-//            property("mixin.env.remapRefMap", "true")
-//            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-//        }
-//
-//        server {
-//            workingDirectory project.file('run/server')
-//            property 'forge.enabledGameTestNamespaces', mod_id
-//            arg "-mixin.config=" + "ae2_1_type_infinity_cell.mixins.json"
-//            property("mixin.env.remapRefMap", "true")
-//            property("mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg")
-//            args '--nogui'
-//        }
-//
-//        gameTestServer {
-//            workingDirectory project.file('run/server')
-//            property 'forge.enabledGameTestNamespaces', mod_id
-//        }
-//
-//        data {
-//            workingDirectory project.file('run')
-//            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-//        }
-//    }
-//}
-//
-//// Include assets and data from data generators
-//sourceSets.main.resources { srcDirs 'src/generated/resources/' }
-//
-//sourceSets {
-//    main {
-//        ext.refMap = "ae2_1_type_infinity_cell.refmap.json"
-//        kotlin {
-//            srcDirs = ['src/main/kotlin']
-//        }
-//        resources {
-//            srcDirs = ['src/main/resources', 'src/generated/resources']
-//        }
-//    }
-//}
-//
-//repositories {
-//    mavenLocal()
-//    mavenCentral()
-//    maven {
-//        name = 'Kotlin for Forge'
-//        url = 'https://thedarkcolour.github.io/KotlinForForge/'
-//        content { includeGroup "thedarkcolour" }
-//    }
-//    maven {
-//        name "Modmaven"
-//        url "https://modmaven.dev/"
-//        content {
-//            includeGroup 'appeng'
-//        }
-//    }
-//    maven {
-//        url = uri("https://modmaven.dev/")
-//        content {
-//            includeGroup "appeng"
-//            includeGroup "de.mari_023"
-//        }
-//    }
-//    maven {
-//        url = "https://cursemaven.com"
-//        content {
-//            includeGroup "curse.maven"
-//        }
-//    }
-//}
-//
-//dependencies {
-//    // Use the latest version of Minecraft Forge
-//    minecraft "net.minecraftforge:forge:$minecraft_version-$forge_version"
-//
-//    implementation "thedarkcolour:kotlinforforge:$kff_version"
-//
-//    // AE2の正確なバージョンを指定（gradle.propertiesの$aeVersionを使用）
-//    implementation fg.deobf("appeng:appliedenergistics2-forge:$aeVersion")
-//    compileOnly fg.deobf("appeng:appliedenergistics2-forge:$aeVersion:api")
-//
-//    // Mixin関連の依存関係を簡素化
-//    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-//}
-//
-//// Mixinの設定を簡素化
-//mixin {
-//    add sourceSets.main, "ae2_1_type_infinity_cell.refmap.json"
-//}
-//
-//// This block of code expands all declared replace properties in the specified resource targets.
-//def resourceTargets = ['META-INF/mods.toml', 'pack.mcmeta']
-//def replaceProperties = [
-//        minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-//        forge_version: forge_version, forge_version_range: forge_version_range,
-//        mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-//        mod_authors: mod_authors, mod_description: mod_description
-//]
-//
-//processResources {
-//    inputs.properties replaceProperties
-//    replaceProperties.put 'project', project
-//
-//    filesMatching(resourceTargets) {
-//        expand replaceProperties
-//    }
-//}
-//
-//compileKotlin {
-//    kotlinOptions.jvmTarget = "17"
-//}
-//
-//jar {
-//    manifest {
-//        attributes([
-//                'Specification-Title'     : mod_id,
-//                'Specification-Vendor'    : mod_authors,
-//                'Specification-Version'   : "1", // We are version 1 of ourselves
-//                'Implementation-Title'    : project.name,
-//                'Implementation-Version'  : project.jar.archiveVersion,
-//                'Implementation-Vendor'   : mod_authors,
-//                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-//                // Mixin関連の属性を追加
-//                'TweakClass': "org.spongepowered.asm.launch.MixinTweaker",
-//                'TweakOrder': 0,
-//                'MixinConfigs': "ae2_1_type_infinity_cell.mixins.json"
-//        ])
-//    }
-//}
-//
-//tasks.withType(JavaCompile).configureEach {
-//    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-//}
-//
-//// The below is only required if using 'maven-publish' and you want to publish to maven or use JitPack
-//jar.finalizedBy('reobfJar')
-//
-//publishing {
-//    publications {
-//        mavenJava(MavenPublication) {
-//            artifact jar
-//        }
-//    }
-//    repositories {
-//        maven {
-//            url "file://${project.projectDir}/mcmodsrepo"
-//        }
-//    }
-//}
-//
 
 buildscript {
     repositories {
@@ -214,6 +12,7 @@ buildscript {
         classpath group: 'com.modrinth.minotaur', name: 'Minotaur', version: '2+'
     }
 }
+
 plugins {
     id 'eclipse'
     id 'idea'
@@ -277,14 +76,14 @@ minecraft {
         }
     }
     mixin {
-        add sourceSets.main, "ae2_1_type_infinity_cell.mixins.json"
+        add sourceSets.main, "mixins.ae2_1_type_infinity_cell.json"
         defaultObfuscationEnv 'searge'
     }
 }
 
 sourceSets {
     main {
-        ext.refMap = "ae2_1_type_infinity_cell.mixins.refmap.json"
+        ext.refMap = "mixins.ae2_1_type_infinity_cell.refmap.json"
         java {
             srcDirs = ['src/main/java']
         }
@@ -295,8 +94,6 @@ sourceSets {
 }
 
 repositories {
-    mavenLocal()
-    mavenCentral()
     maven {
         name = 'Kotlin for Forge'
         url = 'https://thedarkcolour.github.io/KotlinForForge/'
@@ -308,21 +105,6 @@ repositories {
         content {
             includeGroup 'appeng'
         }
-    }
-    maven {
-        name = 'GTCEu Maven'
-        url = 'https://maven.gtceu.com'
-        content {
-            includeGroup 'com.gregtechceu.gtceu'
-        }
-    }
-    maven {
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
     }
     maven {
         url 'https://www.cursemaven.com'
@@ -369,8 +151,8 @@ repositories {
 }
 
 mixin {
-    add sourceSets.main, "ae2_1_type_infinity_cell.mixins.refmap.json"
-    config "ae2_1_type_infinity_cell.mixins.json"
+    add sourceSets.main, "mixins.ae2_1_type_infinity_cell.refmap.json"
+    config "mixins.ae2_1_type_infinity_cell.json"
 }
 
 dependencies {
@@ -379,50 +161,9 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("appeng:appliedenergistics2-forge:15.4.5")
     compileOnly fg.deobf("appeng:appliedenergistics2-forge:15.4.5:api")
-    compileOnly (annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-    compileOnly jarJar("io.github.llamalad7:mixinextras-forge:0.4.1") { jarJar.ranged(it, "[0.4.1,)") }
-    implementation fg.deobf('org.ow2.asm:asm:9.5')
-    implementation fg.deobf("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
-    compileOnly fg.deobf("com.gregtechceu.gtceu:gtceu-1.20.1:1.6.4") { transitive = false }
-    implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-1.20.1:1.0.40") { transitive = false }
-    compileOnly fg.deobf("curse.maven:cc-tweaked-282001:5714507")
-    compileOnly fg.deobf("curse.maven:curios-309927:6418456")
-    compileOnly fg.deobf("curse.maven:architectury-api-419699:5137938")
-    compileOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
-    compileOnly fg.deobf("com.tterrag.registrate:Registrate:MC1.20-1.3.3")
-    compileOnly fg.deobf("curse.maven:modern-ae2-additions-1028068:6342203")
-    compileOnly fg.deobf("dev.shadowsoffire:Placebo:1.20.1-8.6.3")
-    compileOnly fg.deobf("dev.shadowsoffire:ApothicAttributes:1.20.1-1.3.7")
-    compileOnly fg.deobf("dev.shadowsoffire:Apotheosis:1.20.1-7.4.8")
     compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.112")
-    compileOnly fg.deobf("curse.maven:advancedae-1084104:6205290")
-    implementation fg.deobf("curse.maven:fusion-connected-textures-854949:6453794")
-    implementation fg.deobf("curse.maven:curios-309927:6418456")
-    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
-    implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
     implementation fg.deobf("curse.maven:guideme-1173950:6489464")
     compileOnly fg.deobf("dev.emi:emi-forge:1.1.22+1.20.1:api")
-    compileOnly fg.deobf("curse.maven:applied-flux-965012:6649403")
-    // END OF REQUIRED
-    implementation fg.deobf("curse.maven:jade-324717:6106101")
-    implementation fg.deobf("dev.emi:emi-forge:1.1.22+1.20.1")
-//    implementation fg.deobf("mezz.jei:jei-1.20.1-forge:15.20.0.112")
-    implementation fg.deobf("curse.maven:mekanism-268560:6552911")
-    implementation fg.deobf("curse.maven:mekanism-generators-268566:6552914")
-//    implementation fg.deobf("com.gregtechceu.gtceu:gtceu-1.20.1:1.6.4") { transitive = false }
-//    implementation fg.deobf("curse.maven:modern-ae2-additions-1028068:6342203")
-    implementation fg.deobf("curse.maven:ex-pattern-provider-892005:6167228")
-//    implementation fg.deobf("curse.maven:applied-flux-965012:6649403")
-    implementation fg.deobf("curse.maven:glodium-957920:5226922")
-//    implementation fg.deobf("curse.maven:apothic-attributes-898963:5634071")
-//    implementation fg.deobf("curse.maven:placebo-283644:6274231")
-//    implementation fg.deobf("curse.maven:apotheosis-313970:6461960")
-    implementation fg.deobf("curse.maven:geckolib-388172:6333474")
-    implementation fg.deobf("curse.maven:advancedae-1084104:6205290")
-//    implementation fg.deobf("curse.maven:mob-grinding-utils-254241:5131447")
-//    implementation fg.deobf("curse.maven:iron-furnaces-237664:5159498")
-//    implementation fg.deobf("curse.maven:cc-tweaked-282001:5714507")
-//    implementation fg.deobf("curse.maven:advanced-peripherals-431725:6623216")
 }
 
 tasks.named('processResources', ProcessResources).configure {
