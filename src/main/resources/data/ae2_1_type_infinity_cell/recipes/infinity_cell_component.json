@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EFE",
+    "FCF",
+    "EFE"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "F": {
+      "item": "appliedenergistics2:charged_fluix_crystal"
+    },
+    "C": {
+      "item": "appliedenergistics2:1k_storage_component"
+    }
+  },
+  "result": {
+    "item": "ae2_1_type_infinity_cell:infinity_cell_component",
+    "count": 1
+  }
+}
