@@ -69,8 +69,13 @@ class A1TICItems {
     {
         InfinityStorageCell(
             properties().stacksTo(1).rarity(Rarity.EPIC),
-            90.0,
+            0.0,
             _keyType = AEKeyType.items()
         )
     })
+
+    val INFINITY_CELL_COMPONENT: RegistryObject<Item?>? = ITEMS.register(
+        A1TICText.INFINITY_CELL_COMPONENT,
+        { A1TICItems.basic() }
+    )
 }
