@@ -69,7 +69,7 @@ class A1TICItems {
     {
         InfinityStorageCell(
             properties().stacksTo(1).rarity(Rarity.EPIC),
-            0.0,
+            90.0,
             _keyType = AEKeyType.items()
         )
     })

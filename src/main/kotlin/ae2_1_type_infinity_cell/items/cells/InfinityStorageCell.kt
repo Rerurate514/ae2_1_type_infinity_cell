@@ -3,7 +3,6 @@ package ae2_1_type_infinity_cell.items.cells
 import appeng.api.config.FuzzyMode
 import appeng.api.stacks.AEKeyType
 import appeng.api.storage.cells.IBasicCellItem
-import appeng.api.storage.cells.ICellWorkbenchItem
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
@@ -16,12 +15,13 @@ class InfinityStorageCell(
     properties: Properties,
     val _idleDrain: Double,
     val _keyType: AEKeyType
-) : Item(properties), IBasicCellItem, ICellWorkbenchItem {
+) : Item(properties), IBasicCellItem {
     override fun getKeyType(): AEKeyType? = _keyType;
-    override fun getBytes(p0: ItemStack?): Int = Int.MAX_VALUE;
-    override fun getBytesPerType(p0: ItemStack?): Int = Int.MAX_VALUE;
+    override fun getBytes(p0: ItemStack?): Int = (Int.MAX_VALUE - 7)
+    override fun getBytesPerType(p0: ItemStack?): Int = 4;
     override fun getTotalTypes(p0: ItemStack?): Int = 1;
     override fun getIdleDrain(): Double = _idleDrain;
+
 
     override fun getFuzzyMode(p0: ItemStack?): FuzzyMode? {
         val fz = p0!!.orCreateTag.getString("FuzzyMode")
