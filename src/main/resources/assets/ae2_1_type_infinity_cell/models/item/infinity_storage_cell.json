@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ae2_1_type_infinity_cell:item/infinity_storage_cell"
+  }
+}

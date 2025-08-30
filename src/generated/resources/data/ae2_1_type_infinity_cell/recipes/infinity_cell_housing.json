@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "ae2:fluix_pearl"
+    }
+  },
+  "pattern": [
+    "IEI",
+    "EPE",
+    "IEI"
+  ],
+  "result": {
+    "item": "ae2_1_type_infinity_cell:infinity_cell_housing"
+  },
+  "show_notification": true
+}
