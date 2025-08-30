@@ -16,6 +16,7 @@ class Ae2_1_type_infinity_cell {
 
     init {
         LOGGER.log(Level.INFO, "Hello world!")
-        A1TICItems().initialize(MOD_BUS)
+        A1TICItems.initialize(MOD_BUS)
+        MOD_BUS.register(ModDataGenerators::class.java)
     }
 }

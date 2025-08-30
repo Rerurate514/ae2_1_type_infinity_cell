@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "ingredients": [
     {
       "item": "ae2_1_type_infinity_cell:infinity_cell_component"
@@ -9,7 +10,6 @@
     }
   ],
   "result": {
-    "item": "ae2_1_type_infinity_cell:infinity_storage_cell",
-    "count": 1
+    "item": "ae2_1_type_infinity_cell:infinity_storage_cell"
   }
 }

@@ -19,7 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries
 import net.minecraftforge.registries.RegistryObject
 
 
-class A1TICItems {
+object A1TICItems {
     val TABS: DeferredRegister<CreativeModeTab?> = DeferredRegister.create<CreativeModeTab?>(
         Registries.CREATIVE_MODE_TAB,
         Ae2_1_type_infinity_cell.ID
@@ -35,14 +35,12 @@ class A1TICItems {
         ITEMS.register(bus)
     }
 
-    companion object {
-        fun basic(): Item {
-            return MaterialItem(properties())
-        }
+    fun basic(): Item {
+        return MaterialItem(properties())
+    }
 
-        fun properties(): Item.Properties {
-            return Item.Properties()
-        }
+    fun properties(): Item.Properties {
+        return Item.Properties()
     }
 
     val CREATIVE_TAB: RegistryObject<CreativeModeTab?> = TABS.register(
@@ -63,8 +61,8 @@ class A1TICItems {
         A1TICText.INFINITY_CELL_HOUSING,
         { A1TICItems.basic() }
     )
-    
-    val INFINITY_CELL: RegistryObject<Item?>? = ITEMS.register(
+
+    val INFINITY_CELL: RegistryObject<Item?> = ITEMS.register(
         A1TICText.INFINITY_CELL,
     {
         InfinityStorageCell(
@@ -74,7 +72,7 @@ class A1TICItems {
         )
     })
 
-    val INFINITY_CELL_COMPONENT: RegistryObject<Item?>? = ITEMS.register(
+    val INFINITY_CELL_COMPONENT: RegistryObject<Item?> = ITEMS.register(
         A1TICText.INFINITY_CELL_COMPONENT,
         { A1TICItems.basic() }
     )
