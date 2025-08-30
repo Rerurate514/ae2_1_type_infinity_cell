@@ -31,7 +31,7 @@ class ModRecipeProvider(output: PackOutput) : RecipeProvider(output) {
             .define('I', Items.IRON_INGOT)
             .define('E', Items.ENDER_PEARL)
             .define('P', AEItems.FLUIX_PEARL)
-            .define('F', Items.DIAMOND)
+            .define('D', Items.DIAMOND)
             .define('Q', AEBlocks.QUARTZ_GLASS)
             .unlockedBy("has_fluix_pearl", has(AEItems.FLUIX_PEARL))
             .save(consumer)
