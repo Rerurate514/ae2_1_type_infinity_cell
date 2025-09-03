@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_charged_fluix_crystal": {
+    "has_fluix_crystal": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_charged_fluix_crystal",
+      "has_fluix_crystal",
       "has_the_recipe"
     ]
   ],

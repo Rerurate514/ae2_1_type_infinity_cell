@@ -20,8 +20,8 @@ class ModRecipeProvider(output: PackOutput) : RecipeProvider(output) {
             .pattern("EFE")
             .define('E', Items.ENDER_EYE)
             .define('F', AEItems.FLUIX_CRYSTAL)
-            .define('C', AEItems.ITEM_CELL_1K)
-            .unlockedBy("has_charged_fluix_crystal", has(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
+            .define('C', AEItems.CELL_COMPONENT_1K)
+            .unlockedBy("has_fluix_crystal", has(AEItems.CERTUS_QUARTZ_CRYSTAL_CHARGED))
             .save(consumer)
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, A1TICItems.INFINITY_CELL_HOUSING.get())

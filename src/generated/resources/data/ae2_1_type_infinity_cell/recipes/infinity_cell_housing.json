@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
     "E": {
       "item": "minecraft:ender_pearl"
     },
@@ -10,12 +13,15 @@
     },
     "P": {
       "item": "ae2:fluix_pearl"
+    },
+    "Q": {
+      "item": "ae2:quartz_glass"
     }
   },
   "pattern": [
-    "IEI",
+    "QEQ",
     "EPE",
-    "IEI"
+    "IDI"
   ],
   "result": {
     "item": "ae2_1_type_infinity_cell:infinity_cell_housing"
